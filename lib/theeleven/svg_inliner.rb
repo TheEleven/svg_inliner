@@ -8,9 +8,9 @@ module Theeleven
 
     def svg_icon(icon, options = {})
       options = {
-        class: Theeleven::SvgInliner.configuration.class, #svg tag classes
-        path:  Theeleven::SvgInliner.configuration.path,  #path to svg file
-        aria:  Theeleven::SvgInliner.configuration.aria   #add accessiablity attributes
+        class: Theeleven::SvgInliner.configure.class, #svg tag classes
+        path:  Theeleven::SvgInliner.configure.path,  #path to svg file
+        aria:  Theeleven::SvgInliner.configure.aria   #add accessiablity attributes
       }.merge(options)
 
       symbol = get_icon(icon, options[:path])
