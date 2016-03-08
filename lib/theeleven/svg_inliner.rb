@@ -1,5 +1,7 @@
 require "theeleven/svg_inliner/version"
 
+ActiveSupport.on_load( :action_view ){ include Theeleven::SvgInliner }
+
 module Theeleven
   module SvgInliner
     # Theeleven::SvgInliner.config = {
