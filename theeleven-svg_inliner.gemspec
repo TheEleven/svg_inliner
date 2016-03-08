@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Jørgen Sundt"]
   s.email       = ["jorgen@theeleven.co.uk"]
   s.homepage    = "https://github.com/jsundt/svg_inliner"
-  s.summary     = "Grabs symbol tags from external svg files and embed them as inline svg icons in your document."
+  s.summary     = "Grabs symbol tags from a external svg file and embeds them as inline svg icons in your views."
   s.description = "Sacrifices a bit of speed for a lot of flexibility. Easily add animated icons or icons with multiple layers of css styling. Inlining the svgs ensures the best browser support, removes load in flashing and gives you easy access to styling every icon seperately based on hover or other events."
   s.license     = "MIT"
 
