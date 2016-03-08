@@ -20,14 +20,14 @@ Save the svg sprite as iconset.svg and place it in app/assets/images/
 
 ```html
 <svg xmlns="http://www.w3.org/2000/svg">
-    <symbol id="social__twitter" viewBox="0 0 50 50">
-        <title>Twitter</title>
-        <path etc... >
-    </symbol>
-    <symbol id="social__facebook" viewBox="0 0 50 50">
-        <title>Facebook</title>
-        <path etc... >
-    </symbol>
+  <symbol id="social__twitter" viewBox="0 0 50 50">
+    <title>Twitter</title>
+    <path etc goes here >
+  </symbol>
+  <symbol id="social__facebook" viewBox="0 0 50 50">
+    <title>Facebook</title>
+    <path etc goes here >
+  </symbol>
 </svg>
 ```
 
@@ -40,6 +40,13 @@ svg_icon('social__email') #Add <symbol id="social__email"> from default path
 svg_icon('app__settings', class:'icon--big') #Add change the class of <svg>
 
 svg_icon('app__menu', path: asset_path('animated_icons.svg')) #Add a symbol from a non default svg file
+```
+output:
+```html
+<svg class="icon" viewBox="0 0 50 50" role="img" aria-label="Time off Icon">
+  <title>Time off Icon</title>
+  <path etc goes here >
+</svg>
 ```
 
 
