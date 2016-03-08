@@ -1,20 +1,16 @@
 require "theeleven/svg_inliner/version"
+require "theeleven/svg_inliner/configuration"
 
 ActiveSupport.on_load( :action_view ){ include Theeleven::SvgInliner }
 
 module Theeleven
   module SvgInliner
-    # Theeleven::SvgInliner.config = {
-    #   class: 'icon',
-    #   path: "#{Rails.root}/app/assets/images/iconset.svg",
-    #   aria: true
-    # }
 
     def svg_icon(icon, options = {})
       options = {
-        class: 'icon', #svg tag classes
-        path:  "#{Rails.root}/app/assets/images/iconset.svg",  #path to svg file
-        aria:  'true'   #add accessiablity attributes
+        class: Theeleven::SvgInliner.configuration.class, #svg tag classes
+        path:  Theeleven::SvgInliner.configuration.path,  #path to svg file
+        aria:  Theeleven::SvgInliner.configuration.aria   #add accessiablity attributes
       }.merge(options)
 
       symbol = get_icon(icon, options[:path])
