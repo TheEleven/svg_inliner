@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class CharlieSvgInlinerTest < ActiveSupport::TestCase
+class Theeleven::SvgInlinerTest < ActiveSupport::TestCase
   test "truth" do
-    assert_kind_of Module, CharlieSvgInliner
+    assert_kind_of Module, Theeleven::SvgInliner
   end
 end
