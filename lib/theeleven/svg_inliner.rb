@@ -2,17 +2,17 @@ require "theeleven/svg_inliner/version"
 
 module Theeleven
   module SvgInliner
-    Theeleven::SvgInliner.config = {
-      class: 'icon',
-      path: "#{Rails.root}/app/assets/images/iconset.svg",
-      aria: true
-    }
+    # Theeleven::SvgInliner.config = {
+    #   class: 'icon',
+    #   path: "#{Rails.root}/app/assets/images/iconset.svg",
+    #   aria: true
+    # }
 
     def svg_icon(icon, options = {})
       options = {
-        class: Theeleven::SvgInliner.config[:class], #svg tag classes
-        path:  Theeleven::SvgInliner.config[:path],  #path to svg file
-        aria:  Theeleven::SvgInliner.config[:aria]   #add accessiablity attributes
+        class: 'icon', #svg tag classes
+        path:  "#{Rails.root}/app/assets/images/iconset.svg",  #path to svg file
+        aria:  'true'   #add accessiablity attributes
       }.merge(options)
 
       symbol = get_icon(icon, options[:path])
