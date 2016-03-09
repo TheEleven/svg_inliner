@@ -1,17 +1,13 @@
-require "theeleven/svg_inliner/version"
-require "theeleven/svg_inliner/configuration"
+require "the_eleven/svg_inliner/version"
+require "the_eleven/svg_inliner/configuration"
 
-ActiveSupport.on_load( :action_view ){ include Theeleven::SvgInliner }
+ActiveSupport.on_load( :action_view ){ include TheEleven::SvgInliner }
 
-module Theeleven
+module TheEleven
   module SvgInliner
 
     def svg_icon(icon, options = {})
-      options = {
-        class: Theeleven::SvgInliner.configure.class, #svg tag classes
-        path:  Theeleven::SvgInliner.configure.path,  #path to svg file
-        aria:  Theeleven::SvgInliner.configure.aria   #add accessiablity attributes
-      }.merge(options)
+      options = SvgInliner.defaultOptions.merge(options)
 
       symbol = get_icon(icon, options[:path])
       options[:viewbox] = symbol.attr('viewbox')
@@ -21,6 +17,15 @@ module Theeleven
       end
     end
 
+    def each_svg_icon(options = {})
+      options = SvgInliner.defaultOptions.merge(options)
+
+      get_file(options[:path]).css('symbol').each do |symbol|
+        content_tag(:svg, set_svg_opts(symbol, options)) do
+          symbol.children.to_html.html_safe
+        end
+      end
+    end
 
     private
 
@@ -33,7 +38,7 @@ module Theeleven
       symbol = doc.css("symbol[id='" + icon + "']")
 
       if symbol.blank?
-        symbol = get_file("#{Rails.root}/lib/theeleven/svg_inliner/missing.svg").css("symbol")
+        symbol = get_file("the_eleven/svg_inliner/missing.svg").css("symbol")
         puts "Couldn't find svg symbol: #{icon} at: #{file}! Check spelling and make sure there's a <symbol> with the id #{icon} in the specified file."
       end
 

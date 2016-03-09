@@ -53,10 +53,10 @@ output:
 ### Setting defaults
 By default the helper will look for iconset.svg in app/assets/images, you can change the default by adding svg_inliner.rb to config/initialisers/theeleven/
 ```ruby
-Theeleven::SvgInliner.configure do |config|
-  class = 'icon'
-  path = '#{Rails.root}/app/assets/images/iconset.svg'
-  aria = true
+TheEleven::SvgInliner.configure do |config|
+  config.css_class = 'icon'
+  config.path = "#{Rails.root}/app/assets/images/iconset.svg"
+  config.aria = true
 end
 ```
 
