@@ -38,7 +38,8 @@ module TheEleven
       symbol = doc.css("symbol[id='" + icon + "']")
 
       if symbol.blank?
-        symbol = get_file("the_eleven/svg_inliner/missing.svg").css("symbol")
+        missing_doc = "#{Rails.root}/lib/the_eleven/svg_inliner/missing.svg"
+        symbol = get_file(missing_doc).css("symbol")
         puts "Couldn't find svg symbol: #{icon} at: #{file}! Check spelling and make sure there's a <symbol> with the id #{icon} in the specified file."
       end
 
@@ -53,7 +54,7 @@ module TheEleven
         unless aria_title.blank?
           svg_opts = {
             aria: { label: aria_title },
-            role: 'img'
+            role: options[:role]
           }
         else
           puts "Missing <title> in symbol. svg_inliner didn't add aria label to svg."
