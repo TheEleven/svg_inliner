@@ -31,7 +31,7 @@ module TheEleven
       {
         class: TheEleven::SvgInliner.configuration.css_class, #svg tag classes
         path: TheEleven::SvgInliner.configuration.path, #path to svg file
-        role: TheEleven::SvgInliner.configuration.role #add accessiablity attributes
+        role: TheEleven::SvgInliner.configuration.role, #add accessiablity attributes
         aria: TheEleven::SvgInliner.configuration.aria #add accessiablity attributes
       }
     end
