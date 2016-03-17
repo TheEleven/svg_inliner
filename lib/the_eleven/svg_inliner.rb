@@ -8,7 +8,6 @@ module TheEleven
 
     def svg_icon(icon, options = {})
       options = SvgInliner.defaultOptions.merge(options)
-
       symbol = get_icon(icon, options[:path])
       options[:viewbox] = symbol.attr('viewbox')
 
@@ -19,12 +18,16 @@ module TheEleven
 
     def each_svg_icon(options = {})
       options = SvgInliner.defaultOptions.merge(options)
+      symbols = ''
 
       get_file(options[:path]).css('symbol').each do |symbol|
-        content_tag(:svg, set_svg_opts(symbol, options)) do
+        options[:viewbox] = symbol.attr('viewbox')
+        symbols << content_tag(:svg, set_svg_opts(symbol, options)) do
           symbol.children.to_html.html_safe
         end
       end
+
+      symbols.html_safe
     end
 
     private

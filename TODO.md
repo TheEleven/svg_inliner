@@ -7,4 +7,3 @@
 
 
 ### Known bugs and issues
-– Missing icon path doesn't work as it's looking in the app folders instead of gem folders
