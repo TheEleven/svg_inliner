@@ -11,6 +11,7 @@ module TheEleven
 
     class Configuration
       attr_accessor :css_class
+      attr_accessor :file
       attr_accessor :path
       attr_accessor :aria
       attr_accessor :role
@@ -18,7 +19,8 @@ module TheEleven
 
       def initialize
         self.css_class = 'icon'
-        self.path =  "#{Rails.root}/app/assets/images/iconset.svg"
+        self.path = "/lib/assets/images/"
+        self.file = 'iconset.svg'
         self.role = 'img'
         self.aria = true
         self.fallback = false
@@ -30,9 +32,11 @@ module TheEleven
     def self.defaultOptions
       {
         class: TheEleven::SvgInliner.configuration.css_class, #svg tag classes
-        path: TheEleven::SvgInliner.configuration.path, #path to svg file
+        path: TheEleven::SvgInliner.configuration.path,
+        file: TheEleven::SvgInliner.configuration.file, #path to svg file
         role: TheEleven::SvgInliner.configuration.role, #add accessiablity attributes
-        aria: TheEleven::SvgInliner.configuration.aria #add accessiablity attributes
+        aria: TheEleven::SvgInliner.configuration.aria,
+        fallback: TheEleven::SvgInliner.configuration.fallback
       }
     end
   end

@@ -6,9 +6,13 @@ ActiveSupport.on_load( :action_view ){ include TheEleven::SvgInliner }
 module TheEleven
   module SvgInliner
 
+    $INLINER_PATH = File.expand_path(File.dirname(__FILE__))
+
     def svg_icon(icon, options = {})
       options = SvgInliner.defaultOptions.merge(options)
-      symbol = get_icon(icon, options[:path])
+      file = "#{Rails.root}" + options[:path] + options[:file]
+
+      symbol = get_icon(icon, file)
       options[:viewbox] = symbol.attr('viewbox')
 
       content_tag(:svg, set_svg_opts(symbol, options)) do
@@ -18,9 +22,10 @@ module TheEleven
 
     def each_svg_icon(options = {})
       options = SvgInliner.defaultOptions.merge(options)
-      symbols = ''
+      file = "#{Rails.root}" + options[:path] + options[:file]
+      symbols = ''.html_safe
 
-      get_file(options[:path]).css('symbol').each do |symbol|
+      get_file(file).css('symbol').each do |symbol|
         options[:viewbox] = symbol.attr('viewbox')
         symbols << content_tag(:svg, set_svg_opts(symbol, options)) do
           symbol.children.to_html.html_safe
@@ -41,9 +46,10 @@ module TheEleven
       symbol = doc.css("symbol[id='" + icon + "']")
 
       if symbol.blank?
-        missing_doc = "#{Rails.root}/lib/the_eleven/svg_inliner/missing.svg"
+        missing_doc = $INLINER_PATH + "/svg_inliner/missing.svg"
         symbol = get_file(missing_doc).css("symbol")
-        puts "Couldn't find svg symbol: #{icon} at: #{file}! Check spelling and make sure there's a <symbol> with the id #{icon} in the specified file."
+        Rails.logger.error "Missing symbol"
+        Rails.logger.error "Couldn't find svg symbol: '#{icon}' in: '#{file}'!"
       end
 
       symbol

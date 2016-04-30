@@ -1,7 +1,7 @@
 # The Eleven's SVG Inliner
-Grabs symbol tags from external svg files and embed them as inline svg icons in your document.
+Grabs svg symbols from a svg file and embeds them as inline svg in your views.
 
-Sacrifices a bit of speed for a lot of flexibility. Easily add animated icons or icons with multiple layers of css styling. Inlining the svgs ensures the best browser support, removes load in flashing and gives you easy access to styling every icon seperately based on hover or other events.
+Sacrifice a bit of speed for a lot of flexibility. Easily add animated icons or icons with multiple layers of css styling. Inlining the svgs ensures the best browser support, removes load flashing and gives you easy access to style every icon separately based on hover or other events.
 
 
 ### Installation
@@ -16,7 +16,7 @@ Setup the initial SVG sprite for your project. The inliner looks for symbols wit
 
 I'll add a few starter templates here later...
 
-Save the svg sprite as iconset.svg and place it in app/assets/images/
+Save the svg sprite as iconset.svg and place it in lib/assets/images/
 
 ```html
 <svg xmlns="http://www.w3.org/2000/svg">
@@ -35,27 +35,31 @@ Save the svg sprite as iconset.svg and place it in app/assets/images/
 ### Using the svg_icon helper
 The svg_icon helper requires a symbol id and accepts a few options
 ```ruby
-svg_icon('social__email') #Add <symbol id="social__email"> from default path
+svg_icon('social__email') #Grabs 'social__email' icon from default path
 
-svg_icon('app__settings', class:'icon--big') #Add change the class of <svg>
+svg_icon('app__settings', class:'icon--big') #change the class of <svg>
 
-svg_icon('app__menu', path: asset_path('animated_icons.svg')) #Add a symbol from a non default svg file
+svg_icon('app__menu', file: 'animated_icons.svg') #Add a symbol from another svg file
 ```
 output:
 ```html
-<svg class="icon" viewBox="0 0 50 50" role="img" aria-label="Time off Icon">
-  <title>Time off Icon</title>
+<svg class="icon" viewBox="0 0 50 50" role="img" aria-label="Email icon">
+  <title>Email Icon</title>
   <path etc goes here >
 </svg>
 ```
 
 
 ### Setting defaults
-By default the helper will look for iconset.svg in app/assets/images, you can change the default by adding svg_inliner.rb to config/initialisers/theeleven/
+By default the helper will look for iconset.svg in 'lib/assets/images', you can change the default by adding svg_inliner.rb to 'config/initializers/'
+
+Here are the defaults:
 ```ruby
 TheEleven::SvgInliner.configure do |config|
   config.css_class = 'icon'
-  config.path = "#{Rails.root}/app/assets/images/iconset.svg"
+  config.path = "/lib/assets/images/"
+  config.file = "iconset.svg"
+  config.role = 'img'
   config.aria = true
 end
 ```
@@ -65,4 +69,4 @@ end
 I'm gonna add some useful links about svgs etc...
 
 ### Optimazing svgs
-Applications export lots of unneccessary stuff I'm gonna add some optimization tools here...
+Applications export lots of unnecessary stuff I'm gonna add some optimization tools here...
