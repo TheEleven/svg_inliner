@@ -4,7 +4,7 @@ module SvgInliner
   end
 
   def self.configure
-    self.configuration ||= Configuration.new
+    self.configuration || Configuration.new
     yield(configuration)
   end
 
@@ -22,7 +22,7 @@ module SvgInliner
       self.path = "/lib/assets/images/"
       self.file = 'iconset.svg'
       self.role = 'img'
-      self.inline = false
+      self.inline = true
       self.aria = true
       self.fallback = false
     end

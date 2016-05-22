@@ -66,6 +66,26 @@ end
 ```
 
 
+### Using JS inlining for none critical icons
+Inlining everything on the server can be a bit expensive. Luckily we can use jonathantneal's svg4everybody script to inline every none critical piece of svg after the document is ready.
+
+Read https://github.com/jonathantneal/svg4everybody for documentation for svg4everybody
+
+Add this to your application.js file to enable svg4everybody:
+```javascript
+//= require svg_inliner/svg4everybody
+
+svg4everybody({
+  fallback: function (src, svg, use) {
+    return 'fallback.png'; // always return fallback.png
+  },
+  nosvg: false, // shiv <svg> and <use> elements and use image fallbacks (requires legacy version of svg4everybody)
+  polyfill: true // polyfill <use> elements for External Content
+});
+end
+```
+
+
 ### Further reading
 I'm gonna add some useful links about svgs etc...
 

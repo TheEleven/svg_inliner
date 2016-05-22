@@ -4,15 +4,16 @@ require "svg_inliner/configuration"
 ActiveSupport.on_load( :action_view ){ include SvgInliner }
 
 module SvgInliner
+  class Engine < ::Rails::Engine
+  end
 
   $INLINER_PATH = File.expand_path(File.dirname(__FILE__))
-  $ROOT_PATH = "#{Rails.root}"
 
   def svg_icon(icon, options = {})
     options = SvgInliner.defaultOptions.merge(options)
 
     if options[:inline]
-      file = $ROOT_PATH + options[:path] + options[:file]
+      file = "#{Rails.root}" + options[:path] + options[:file]
 
       symbol = get_icon(icon, file)
       options[:viewbox] = symbol.attr('viewbox')
