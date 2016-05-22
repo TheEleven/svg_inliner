@@ -6,7 +6,7 @@ Sacrifice a bit of speed for a lot of flexibility. Easily add animated icons or 
 
 ### Installation
 ```ruby
-gem 'theeleven-svg_inliner'
+gem 'svg_inliner'
 ```
 Add line above to gemfile and execute: $ bundle
 
@@ -55,10 +55,11 @@ By default the helper will look for iconset.svg in 'lib/assets/images', you can 
 
 Here are the defaults:
 ```ruby
-TheEleven::SvgInliner.configure do |config|
+SvgInliner.configure do |config|
   config.css_class = 'icon'
   config.path = "/lib/assets/images/"
   config.file = "iconset.svg"
+  config.inline = true
   config.role = 'img'
   config.aria = true
 end

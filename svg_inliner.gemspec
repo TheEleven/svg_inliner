@@ -1,12 +1,12 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "the_eleven/svg_inliner/version"
+require "svg_inliner/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "the_eleven-svg_inliner"
-  s.version     = TheEleven::SvgInliner::VERSION
+  s.name        = "svg_inliner"
+  s.version     = SvgInliner::VERSION
   s.authors     = ["Jørgen Sundt"]
   s.email       = ["jorgen@theeleven.co.uk"]
   s.homepage    = "https://github.com/jsundt/svg_inliner"

@@ -1,6 +1,6 @@
 ### Upcoming features etc
 – Default iconsets
-– Default scss styling of icons
+– Default scss styling of icons
 – Demo page
 – Links for further reading and optimizing parts of the readme
 – Add to rubygems
