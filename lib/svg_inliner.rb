@@ -32,17 +32,28 @@ module SvgInliner
 
   def each_svg_icon(options = {})
     options = SvgInliner.defaultOptions.merge(options)
+
     file = "#{Rails.root}" + options[:path] + options[:file]
     symbols = ''.html_safe
 
     get_file(file).css('symbol').each do |symbol|
       options[:viewbox] = symbol.attr('viewbox')
-      symbols << content_tag(:svg, set_svg_opts(symbol, options)) do
+      icon = content_tag(:svg, set_svg_opts(symbol, options)) do
         symbol.children.to_html.html_safe
       end
+      if options[:show_title]
+        icon = content_tag(:div, class: 'each-svg-icon__wrap') do
+          icon + content_tag(:p, symbol.attr('id').html_safe, class: 'each-svg-icon__title')
+        end
+      end
+      symbols << icon
     end
 
-    symbols.html_safe
+    each_icon = content_tag(:div, class: 'each-svg-icon__container') do
+      symbols.html_safe
+    end
+
+    each_icon
   end
 
   private
